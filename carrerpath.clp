@@ -13,7 +13,7 @@
     (slot lastname)
     (slot university)
     (slot yearofstudy)
+    (multislot interest)
+    (multislot specialization)
 )
 
-
-;

@@ -114,6 +114,21 @@
     (printout t "Natwork Security Analyst" crlf)
 )
 
+(defrule career_6 "rule 1"
+    (interest system)
+    (interest analytics)
+    (specialization system)
+=>
+    (printout t "Systems Analyst" crlf)
+)
+
+(defrule career_7 "rule 1"
+    (interest system)
+    (interest auditing)
+    (specialization system | CISA | GSNA)
+=>
+    (printout t "Systems Auditor" crlf)
+)
 
 
 

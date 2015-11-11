@@ -10,7 +10,7 @@
 
 (deftemplate student "student personal details"
     (slot name)
-    (multislot carrer)
+    (multislot career)
 )
 
 ;Intialize
@@ -76,25 +76,32 @@
 
 ;Rules
 
-(defrule carrer_1 "rule 1"
+(defrule career_1 "rule 1"
     (interest analytics)
     (specialization data)
 =>
     (printout t "Data " crlf)
 )
 
-(defrule carrer_2 "rule 1"
+(defrule career_2 "rule 1"
     (interest networking)
     (specialization ccna|subnetting)
 =>
     (printout t "Networks" crlf)
 )
 
-(defrule carrer_3 "rule 1"
+(defrule career_3 "rule 1"
     (interest system)
     (specialization system)
 =>
     (printout t "Systems" crlf)
+)
+
+(defrule career_4 "rule 1"
+    (interest security)
+    (specialization CISM | CommpTIA Security+ | CCFP | CISSP |SSCP | CAP | CEH)
+=>
+    (printout t "Security" crlf)
 )
 
 

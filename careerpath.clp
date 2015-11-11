@@ -7,7 +7,7 @@
 
 
 ;Student's template
-
+(name ?name)
 (deftemplate student "student personal details"
     (slot name)
     (multislot career)
@@ -30,14 +30,19 @@
     (printout t "-design" crlf)
     (printout t "-web" crlf)
     (printout t "-programming" crlf)
+    (printout t "-mobile" crlf)
     (printout t "-management" crlf)
-    (printout t "-networking-(e.g routing)" crlf)
+    (printout t "-networking" crlf)
     (printout t "-security" crlf)
     (printout t "-machine-learning" crlf)
     (printout t "-documenting" crlf)
-    (printout t "-security" crlf)
+    (printout t "-cyrptography" crlf)
     (printout t "-healthcare" crlf)
     (printout t "-security" crlf)
+    (printout t "-games" crlf)
+    (printout t "-marketing" crlf)
+    (printout t "-social-media" crlf)
+    (printout t "-computer-systems")
     (printout t "*****************************" crlf)
     
     (bind ?read yes)             
@@ -45,25 +50,25 @@
         (printout t "Interest:" crlf)
           (bind ?interest (read))
           (assert(interest ?interest))
-          (printout t "add-- yes or no" crlf)
+          (printout t "Continue adding interests?-yes or no" crlf)
           (bind ?read (read)) 
      )
     
     (printout t "What specializations/certificates  you have -" ?name "?" crlf)
     (printout t "Choose from this list:" crlf)
     (printout t "*****************************" crlf)
-    (printout t "-Networking-CCNP,CCNA, CCIE,WCNA,JNCIE-ENT, CompTIA-Network+" crlf)
-    (printout t "-Project Management-CAPM,PgMP, PMP, " crlf)
-    (printout t "-Auditing-CISA, GSNA" crlf)
-    (printout t "-Security- CISM, CommpTIA Security+, CCFP, CISSP,SSCP,CAP,CEH, " crlf)
-    (printout t "-management" crlf)
-    (printout t "-security" crlf)
-    (printout t "-machine-learning" crlf)
-    (printout t "-documenting" crlf)
-    (printout t "-security" crlf)
-    (printout t "-healthcare" crlf)
-    (printout t "-security" crlf)
-    (printout t "-databases" crlf)
+    (printout t "-networking-CCNP,CCNA, CCIE,WCNA,JNCIE-ENT, CompTIA-Network+" crlf)
+    (printout t "-project-management-CAPM,PgMP, PMP" crlf)
+    (printout t "-auditing-CISA, GSNA" crlf)
+    (printout t "-security- CISM, CommpTIA Security+, CCFP, CISSP,SSCP,CAP,CEH, " crlf)
+    (printout t "-data-science" crlf)
+    (printout t "-interaction-design" crlf)
+    (printout t "-cloud-computing" crlf)
+    (printout t "-human-computer-interaction" crlf)
+    (printout t "-computer-graphics" crlf)
+    (printout t "-operating-system-administation" crlf)
+
+
     (printout t "*****************************" crlf)
     
     (bind ?read yes)             
@@ -71,60 +76,85 @@
           (printout t "Specialization:" crlf)
           (bind ?specialization (read))
           (assert(specialization ?specialization))
-          (printout t "Add- yes or no" crlf)
+          (printout t "Continue adding specializations?-yes or no" crlf)
           (bind ?read (read)) 
      )
 )
 
-;Rules
+;Rules first level
 
-(defrule career_1 "rule 1"
-    (interest analytics)
-    (specialization data)
+(defrule career_1 "Data Career Path"
+   (or (interest analytics|machine-learning)
+    (specialization data))
 =>
-    (printout t "Data " crlf)
+    ;(printout t "Data " crlf)
+    (assert (first_level data))
 )
 
-(defrule career_2 "rule 1"
-    (interest networking)
-    (specialization ccna|subnetting)
+
+(defrule career_2 "Network"
+    (or (interest networking)
+    (specialization CCNP|CCNA|CCIE|WCNA|JNCIE-ENT|CompTIA-Network+))
 =>
-    (printout t "Networks" crlf)
+    ;(printout t "Networks" crlf)
+    (assert (first_level network))
 )
 
-(defrule career_3 "rule 1"
-    (interest system)
-    (specialization system)
+
+(defrule career_3 "Systems"
+    (or (interest computer-systems|networking)
+    (specialization operating-system-administration))
 =>
-    (printout t "Systems Administrator" crlf)
+    (printout t "Systems" crlf)
+    (assert (first_level system))
 )
 
-(defrule career_4 "rule 1"
-    (interest security)
-    (specialization CISM | CommpTIA Security+ | CCFP | CISSP |SSCP | CAP | CEH)
+
+(defrule career_4 "Security"
+    (or (interest security)
+    (specialization CISM | CommpTIA Security+ | CCFP | CISSP |SSCP | CAP | CEH))
 =>
     (printout t "Security" crlf)
+    (assert (first_level security))
 )
 
-(defrule career_5 "rule 1"
+
+(defrule career_5 "Management"
+    (or (interest management)
+    (specialization CAPM|PgMP|PMP))
+=>
+    (printout t "Management" crlf)
+    (assert (first_level management))
+)
+
+
+(defrule career_6 "Design"
     (interest security)
-    (interest networking)
-    (interest analytics)
     (specialization CISM | CommpTIA Security+ | CCFP | CISSP |SSCP | CAP | CEH)
-    (specialization ccna|subnetting)
+=>
+    (printout t "Design" crlf)
+    (assert (first_level design))
+)
+
+(defrule career_7 "Network Security Analyst"
+    (and (first_level security)
+    (first_level network)
+    (interest analytics))
 =>
     (printout t "Natwork Security Analyst" crlf)
 )
 
-(defrule career_6 "rule 1"
+
+
+(defrule career_8 "rule 1"
     (interest system)
     (interest analytics)
-    (specialization system)
+    (first_level system)
 =>
     (printout t "Systems Analyst" crlf)
 )
 
-(defrule career_7 "rule 1"
+(defrule career_9 "rule 1"
     (interest system)
     (interest auditing)
     (specialization system | CISA | GSNA)
@@ -132,21 +162,21 @@
     (printout t "Systems Auditor" crlf)
 )
 
-(defrule career_8 "rule 1"
+(defrule career_10 "rule 1"
     (interest analytics)
     (specialization databases)
 =>
     (printout t "Database Administrator" crlf)
 )
 
-(defrule career_9 "rule 1"
+(defrule career_12 "rule 1"
     (interest management)
     (specialization CAPM | PgMP | PMP)
 =>
     (printout t "Software Project Management" crlf)
 )
 
-(defrule career_10 "rule 1"
+(defrule career_13 "rule 1"
     (interest design)
     (interest web)
 =>

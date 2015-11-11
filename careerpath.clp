@@ -104,6 +104,16 @@
     (printout t "Security" crlf)
 )
 
+(defrule career_5 "rule 1"
+    (interest security)
+    (interest networking)
+    (interest analytics)
+    (specialization CISM | CommpTIA Security+ | CCFP | CISSP |SSCP | CAP | CEH)
+    (specialization ccna|subnetting)
+=>
+    (printout t "Natwork Security Analyst" crlf)
+)
+
 
 
 

@@ -28,6 +28,7 @@
     (printout t "-security" crlf)
     (printout t "-analytics" crlf)
     (printout t "-design" crlf)
+    (printout t "-web" crlf)
     (printout t "-programming" crlf)
     (printout t "-management" crlf)
     (printout t "-networking-(e.g routing)" crlf)
@@ -62,6 +63,7 @@
     (printout t "-security" crlf)
     (printout t "-healthcare" crlf)
     (printout t "-security" crlf)
+    (printout t "-databases" crlf)
     (printout t "*****************************" crlf)
     
     (bind ?read yes)             
@@ -94,7 +96,7 @@
     (interest system)
     (specialization system)
 =>
-    (printout t "Systems" crlf)
+    (printout t "Systems Administrator" crlf)
 )
 
 (defrule career_4 "rule 1"
@@ -128,6 +130,27 @@
     (specialization system | CISA | GSNA)
 =>
     (printout t "Systems Auditor" crlf)
+)
+
+(defrule career_8 "rule 1"
+    (interest analytics)
+    (specialization databases)
+=>
+    (printout t "Database Administrator" crlf)
+)
+
+(defrule career_9 "rule 1"
+    (interest management)
+    (specialization CAPM | PgMP | PMP)
+=>
+    (printout t "Software Project Management" crlf)
+)
+
+(defrule career_10 "rule 1"
+    (interest design)
+    (interest web)
+=>
+    (printout t "Web Designer" crlf)
 )
 
 

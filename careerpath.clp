@@ -66,7 +66,7 @@
     (printout t "-cloud-computing" crlf)
     (printout t "-human-computer-interaction" crlf)
     (printout t "-computer-graphics" crlf)
-    (printout t "-operating-system-administation" crlf)
+    (printout t "-operating-system-administration" crlf)
 
 
     (printout t "*****************************" crlf)
@@ -170,14 +170,14 @@
 )
 
 (defrule career_12 "rule 1"
-    (interest management)
+    (and (first_level management))
     (specialization CAPM | PgMP | PMP)
 =>
     (printout t "Software Project Management" crlf)
 )
 
-(defrule career_13 "rule 1"
-    (interest design)
+(defrule career_13 "Web Designer"
+    (and (first_level design))
     (interest web)
 =>
     (printout t "Web Designer" crlf)

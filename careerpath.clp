@@ -42,7 +42,8 @@
     (printout t "-games" crlf)
     (printout t "-marketing" crlf)
     (printout t "-social-media" crlf)
-    (printout t "-computer-systems")
+    (printout t "-computer-systems" crlf)
+     (printout t "-auditing" crlf)
     (printout t "*****************************" crlf)
     
     (bind ?read yes)             
@@ -105,16 +106,16 @@
     (or (interest computer-systems|networking)
     (specialization operating-system-administration))
 =>
-    (printout t "Systems" crlf)
+    ;(printout t "Systems" crlf)
     (assert (first_level system))
 )
 
 
 (defrule career_4 "Security"
     (or (interest security)
-    (specialization CISM | CommpTIA Security+ | CCFP | CISSP |SSCP | CAP | CEH))
+    (specialization CISM | CommpTIA-Security+ | CCFP | CISSP |SSCP | CAP | CEH))
 =>
-    (printout t "Security" crlf)
+    ;(printout t "Security" crlf)
     (assert (first_level security))
 )
 
@@ -123,16 +124,17 @@
     (or (interest management)
     (specialization CAPM|PgMP|PMP))
 =>
-    (printout t "Management" crlf)
+    ;(printout t "Management" crlf)
     (assert (first_level management))
 )
 
 
 (defrule career_6 "Design"
-    (interest security)
-    (specialization CISM | CommpTIA Security+ | CCFP | CISSP |SSCP | CAP | CEH)
+    (or (interest design)
+    (specialization computer-graphics)
+    (specialization human-computer-interaction))
 =>
-    (printout t "Design" crlf)
+    ;(printout t "Design" crlf)
     (assert (first_level design))
 )
 
@@ -141,39 +143,38 @@
     (first_level network)
     (interest analytics))
 =>
-    (printout t "Natwork Security Analyst" crlf)
+    (printout t "Network Security Analyst" crlf)
 )
 
 
-
-(defrule career_8 "rule 1"
-    (interest system)
+(defrule career_8 "System Analyst"
+    (or (interest security)
     (interest analytics)
-    (first_level system)
+    (first_level system))
 =>
     (printout t "Systems Analyst" crlf)
 )
 
-(defrule career_9 "rule 1"
-    (interest system)
+(defrule career_9 "System Auditor"
+    (or (first_level system)
     (interest auditing)
-    (specialization system | CISA | GSNA)
+    (specialization CISA | GSNA))
 =>
     (printout t "Systems Auditor" crlf)
 )
 
-(defrule career_10 "rule 1"
+(defrule career_10 "Database Administrator"
     (interest analytics)
     (specialization databases)
 =>
     (printout t "Database Administrator" crlf)
 )
 
-(defrule career_12 "rule 1"
-    (and (first_level management))
-    (specialization CAPM | PgMP | PMP)
+
+(defrule career_12 "software project Manager"
+    (first_level management)
 =>
-    (printout t "Software Project Management" crlf)
+    (printout t "Software Project Manager" crlf)
 )
 
 (defrule career_13 "Web Designer"

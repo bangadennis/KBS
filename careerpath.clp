@@ -18,6 +18,8 @@
     (multislot career)
 )
 
+(defglobal ?*x* = 0)
+
 ;Intialize
 (defrule init "menu"
     (initial-fact)
@@ -89,7 +91,9 @@
      
 (printout t "******************************************************" crlf)
 (printout t ?name "-the system suggests these Careerpaths" crlf)
+
 )
+
 
 ;Rules first level
 (defrule career_1 "Data Career Path"
@@ -152,6 +156,7 @@
     (interest analytics))
 =>
     (printout t "Network Security Analyst" crlf)
+    (bind ?*x* 1)
 )
 
 (defrule career_7_0 "Computer Systems Security Architect"
@@ -159,6 +164,7 @@
     (first_level system))
 =>
     (printout t "Security Architect" crlf)
+    (bind ?*x* 1)
 )
 
 (defrule career_7_1 "Data Analyst"
@@ -166,6 +172,7 @@
     (interest programming))
 =>
     (printout t "Data Analyst" crlf)
+    (bind ?*x* 1)
 )
 
 (defrule career_8 "System Analyst"
@@ -174,6 +181,7 @@
     (first_level system))
 =>
     (printout t "Systems Analyst" crlf)
+    (bind ?*x* 1)
 )
 
 (defrule career_9 "System Auditor"
@@ -182,6 +190,7 @@
     (specialization CISA | GSNA|auditing)))
 =>
     (printout t "Computer Systems Auditor" crlf)
+    (bind ?*x* 1)
 )
 
 (defrule career_9_1 "Software QA"
@@ -191,6 +200,7 @@
     (specialization CISA | GSNA|auditing)))
 =>
     (printout t "Software Quality Assurance Tester" crlf)
+    (bind ?*x* 1)
 )
 
 
@@ -200,6 +210,7 @@
     (interest programming))
 =>
     (printout t "Database Administrator" crlf)
+    (bind ?*x* 1)
 )
 
 
@@ -208,6 +219,7 @@
     (interest computer-systems))
 =>
     (printout t "Software Project Manager" crlf)
+    (bind ?*x* 1)
 )
 
 (defrule career_13_1 "Web Designer"
@@ -215,6 +227,7 @@
     (first_level design))
 =>
     (printout t "Web Designer" crlf)
+    (bind ?*x* 1)
 )
 
 (defrule career_13_2 "Web Developer"
@@ -222,6 +235,7 @@
     (interest web))
 =>
     (printout t "Web Programmer" crlf)
+    (bind ?*x* 1)
 )
 
 (defrule career_15_1 "Mobile Developer"
@@ -229,6 +243,7 @@
     (interest programming))
 =>
     (printout t "Mobile developer" crlf)
+    (bind ?*x* 1)
 )
 
 (defrule career_15_2 "Mobile Designer"
@@ -236,6 +251,7 @@
     (first_level design))
 =>
     (printout t "Mobile Designer" crlf)
+    (bind ?*x* 1)
 )
 
 
@@ -245,6 +261,7 @@
     (first_level design))
 =>
     (printout t "Game Developer" crlf)
+    (bind ?*x* 1)
 )
 
 (defrule career_20 "Social Media Marketing"
@@ -262,6 +279,7 @@
     (first_level design))
 =>
     (printout t "Software Engineer" crlf)
+    (bind ?*x* 1)
 )
 
 (defrule career_21_1 "Software documentation"
@@ -270,6 +288,7 @@
     (first_level design))
 =>
     (printout t "Computer System Documenter" crlf)
+    (bind ?*x* 1)
 )
 
 (defrule career_22 "Health Systems Developer"
@@ -281,6 +300,7 @@
     )
 =>
     (printout t "Healthcare Developer" crlf)
+    (bind ?*x* 1)
 )
 
 (defrule career_23 "Cloud network engineer"
@@ -288,6 +308,7 @@
     (first_level network))
 =>
     (printout t "Cloud network engineer" crlf)
+    (bind ?*x* 1)
 )
 
 (defrule career_24 "Cloud software engineer"
@@ -296,5 +317,15 @@
     (interest design)
     )
 =>
-    (printout t "Cloud software engineer" crlf)
+    (printout t "Cloud software Engineer" crlf)
+    (bind ?*x* 1)
+)
+
+;Rule that executes when no career path suggested
+(defrule no_suggestion "No suggestion rule"
+   (initial-fact)
+=>
+    (if (= ?*x* 0)
+      then
+   (printout t "No career path suggested based on your choices" crlf))
 )

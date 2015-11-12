@@ -184,6 +184,59 @@
     (printout t "Web Designer" crlf)
 )
 
+(defrule career_14 "cloud architect"
+    (first_level management)
+=>
+    (printout t "Software Project Manager" crlf)
+)
+
+(defrule career_17 "Cloud Computing"
+    (or(specialization cloud-computing))
+=>
+    ;(printout t "Management" crlf)
+    (assert (first_level cloud-computing))
+)
+
+(defrule career_18 "cloud architect"
+    (first_level cloud-computing)
+    (specialization shell|VBScript|Perl|Python|Linux|Windows)
+=>
+    (printout t "Cloud Architect" crlf)
+)
+
+(defrule career_19 "Cloud software engineer"
+    (first_level cloud-computing)
+    (first_level software-engineer)
+    (specialization ETL)
+=>
+    (printout t "Cloud software engineer" crlf)
+)
+
+(defrule career_23 "Cloud software engineer"
+    (first_level cloud-computing)
+    (specialization shell|VBScript|Perl|Python|Linux|Windows)
+=>
+    (printout t "Cloud Architect" crlf)
+)
+
+(defrule career_24 "Cloud network engineer"
+    (first_level cloud-computing)
+    (first_level network)
+=>
+    (printout t "Cloud network engineer" crlf)
+)
+
+
+
+;Cloud architect
+;Cloud software engineer
+;Cloud engineer
+;Cloud services developer
+;Cloud systems administrator
+;Cloud consultant
+;Cloud systems engineer
+;Cloud network engineer
+;Cloud product manager
 
 
 
